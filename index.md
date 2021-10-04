@@ -577,4 +577,6 @@ if __name__ == "__main__":
 ```
 ### Final notes
 
-And thats it , the video is uploaded. I know that time.sleep() is not ideal to use but in my case with youtube reactive UI it seems to work best. I've uploaded the source codes for engine.py , scrapper.py , thumbnail.py,  that is just a small part of the whole project source code , but the other parts are unedited without comments and it's a huge mess. Took me about a month to finish the whole project from scratch and another month to fix all the bugs and calibrate it correctly. The project is put on hold and have not been active for 3 months.
+And thats it , the video is uploaded. I know that time.sleep() is not ideal to use but in my case with youtube reactive UI it seems to work best. I've uploaded the source codes for engine.py , scrapper.py , thumbnail.py here : https://github.com/silvdoche/NexusR
+
+That is just a small part of the whole project source code , but the other parts are unedited without comments and it's a huge mess. Took me about a month to finish the whole project from scratch and another month to fix all the bugs and calibrate it correctly. The project is put on hold and have not been active for 3 months.

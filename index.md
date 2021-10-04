@@ -1,8 +1,8 @@
 ## What is Nexus replay automated system ?
 
-Its a fully automated replay recording system for League of Legends ( Riot Games, Inc. ) 
+It's a fully automated replay recording system for League of Legends ( Riot Games, Inc. ) 
 
-First its going to render and record all the games in real time using OBS , then upload the videos with Selenium chrome webdriver to youtube.
+First it's going to render and record all the games in real time using OBS , then upload the videos with Selenium chrome webdriver to youtube.
 
 All of the recorded games are published at : [Nexus Replays](https://www.youtube.com/channel/UCbcrpME8Gf0Swwrk4IupVow/featured)
 
@@ -118,10 +118,10 @@ def data_filter(nickname,region):
 ```
 
 
-3.The script then creates a folder where it will store the game replay data , empty video description and title text files. OBS is being started at the same time , and being controlled with keyboard macros. I couldnt find a way to control it with API or wincom , so im using a virtual keyboard inputs.
+3.The script then creates a folder where it will store the game replay data , empty video description and title text files. OBS is being started at the same time , and being controlled with keyboard macros. I couldnt find a way to control it with API or wincom , so i'm using a virtual keyboard inputs.
 Once the game is started , a mouse macros are being used to control the game , set the needed settings and start the recording.
 
-4.After the game is finished , youtube preparations are starting. First it will fill the desc.txt and title.txt , thoose are the files for youtube description and title of the video.
+4.After the game is finished , youtube preparations are starting. First it will fill the desc.txt and title.txt , those are the files for youtube description and title of the video.
 
 ```python
 def desc_gen(CHAMP_SKIN_FRIENDLY,CHAMP_SKIN_ENEMY,FRIENDLY_RUNE,ENEMY_RUNE,LANE_POS,PLAYER_NAME_F,PLAYER_NAME_E,
@@ -178,7 +178,7 @@ CHAMPION_FRIENDLY,CHAMPION_ENEMY,ID_OFTHEGAME,PLAYER_REGION,PLAYER_NICKNAME,LEAG
 ### Thumbnail picture generate
 The best solution for a thumbnail generation i found is to use PIL and paste pictures over pictures like layers.
 First it will open a background black image with constant size 1280 x 720. After that on the left side of the picture it will paste the first player champion ,
-on the right side it will paste the second player champion , paste players face profiles , paste the text pictures and stich everything together.
+on the right side it will paste the second player champion , paste players face profiles , paste the text pictures and stitch everything together.
 
 ```python
 def trans_paste(bg_img,fg_img,box=(0,0)):
@@ -245,7 +245,7 @@ def generate(skin_1,skin_2,lane_pos,player1,player2,region,patch,champion_f,cham
         newimg19.save("D:/lolreplays/buffer/thumbnail.png")
 ```
 #### Samples
- Here some generated thumbnail pictures , the possibilities are almost endless , there are 150 champions , over 80 pro players and about 10 skins of each champion.
+ Here are some generated thumbnail pictures , the possibilities are almost endless , there are 150 champions , over 80 pro players and about 10 skins of each champion.
 
 ![thumbnail one](https://i.imgur.com/XaNQCME.png)
 ![thumbnail two](https://i.imgur.com/p3CthQm.png)
@@ -254,7 +254,7 @@ def generate(skin_1,skin_2,lane_pos,player1,player2,region,patch,champion_f,cham
 
 ### Youtube upload
 
-Now that we have a video , thumbnail picture , video title and description file , we are ready to upload to Youtube. I decided to use python Selenium instead of youtube api beucase
+Now that we have a video , thumbnail picture , video title and description file , we are ready to upload to Youtube. I decided to use python Selenium instead of youtube api becuase
 the API have some hard limitations , like a maximum upload traffic per day , limited edition on the video and some other problems. 
 
 For some reason Chrome webdriver works better than mozila web driver for youtube , i saw an improvement of 20% better upload speed using chrome over mozila , which doesnt sound like
@@ -577,4 +577,4 @@ if __name__ == "__main__":
 ```
 ### Final notes
 
-And thats it , the video is uploaded. I know that time.sleep() is not ideal to use but in my case with youtube reactive UI it seems to work best. I've uploaded the source codes for engine.py , scrapper.py , thumbnail.py,  that is just a small part of the whole project source code , but the other parts are unedited without comments and its a huge mess. Took me about a month to finish the whole project from scratch and another month to fix all the bugs and calibrate it correctly. The project is put on hold and have not been active for 3 months.
+And thats it , the video is uploaded. I know that time.sleep() is not ideal to use but in my case with youtube reactive UI it seems to work best. I've uploaded the source codes for engine.py , scrapper.py , thumbnail.py,  that is just a small part of the whole project source code , but the other parts are unedited without comments and it's a huge mess. Took me about a month to finish the whole project from scratch and another month to fix all the bugs and calibrate it correctly. The project is put on hold and have not been active for 3 months.

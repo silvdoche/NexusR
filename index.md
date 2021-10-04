@@ -4,12 +4,12 @@ Its a automated replay recording system for League of Legends ( Riot Games, Inc.
 
 All of the recorded games are published at : [Nexus Replays](https://www.youtube.com/channel/UCbcrpME8Gf0Swwrk4IupVow/featured)
 
-### Markdown
+### How does it work
 
 Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
 
 ```markdown
-Syntax highlighted code block
+### First its going to scare data using BS4 (Beautiful Soup 4) from 
 
 # Header 1
 TEST 1

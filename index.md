@@ -92,7 +92,7 @@ def data_filter(nickname,region):
 
 
 
-Now that we have the data , we have to find the best KDA (Kill/Death/Assist) games and insert them into the SQL database to be recorder.KDA is the best metric to measure a quality of the game , having a higher score means the game is more interesting to watch, nobody wants to watch a loosing game or a game that is too stale.
+2.Now that we have the data , we have to find the best KDA (Kill/Death/Assist) games and insert them into the SQL database to be recorder.KDA is the best metric to measure a quality of the game , having a higher score means the game is more interesting to watch, nobody wants to watch a loosing game or a game that is too stale.
 ```python
     del datasett[0]
     tt_kda = []
@@ -118,10 +118,10 @@ Now that we have the data , we have to find the best KDA (Kill/Death/Assist) gam
 ```
 
 
-The script then creates a folder where it will store the game replay data , empty video description and title text files. OBS is being started at the same time , and being controlled with keyboard macros. I couldnt find a way to control it with API or wincom , so im using a virtual keyboard inputs.
+3.The script then creates a folder where it will store the game replay data , empty video description and title text files. OBS is being started at the same time , and being controlled with keyboard macros. I couldnt find a way to control it with API or wincom , so im using a virtual keyboard inputs.
 Once the game is started , a mouse macros are being used to control the game , set the needed settings and start the recording.
 
-After the game is finished , youtube preparations are starting. First it will fill the desc.txt and title.txt , thoose are the files for youtube description and title of the video.
+4.After the game is finished , youtube preparations are starting. First it will fill the desc.txt and title.txt , thoose are the files for youtube description and title of the video.
 
 ```python
 def desc_gen(CHAMP_SKIN_FRIENDLY,CHAMP_SKIN_ENEMY,FRIENDLY_RUNE,ENEMY_RUNE,LANE_POS,PLAYER_NAME_F,PLAYER_NAME_E,
@@ -177,7 +177,7 @@ CHAMPION_FRIENDLY,CHAMPION_ENEMY,ID_OFTHEGAME,PLAYER_REGION,PLAYER_NICKNAME,LEAG
 
 ### Thumbnail picture generate
 The best solution for a thumbnail generation i found is to use PIL and paste pictures over pictures like layers.
-First it will open a back image with constant size 1280 x 720. After that on the left side of the picture it will paste the first player champion ,
+First it will open a background black image with constant size 1280 x 720. After that on the left side of the picture it will paste the first player champion ,
 on the right side it will paste the second player champion , paste players face profiles , paste the text pictures and stich everything together.
 
 ```python
@@ -244,3 +244,6 @@ def generate(skin_1,skin_2,lane_pos,player1,player2,region,patch,champion_f,cham
     else:
         newimg19.save("D:/lolreplays/buffer/thumbnail.png")
 ```
+#### Here some generated thumbnail pictures , the possibilities are almost endless , there are 150 champions , over 80 pro players and about 10 skins of each champion.
+
+![thumbnail one](https://github.com/silvdoche/NexusR/blob/gh-pages/thumbsamp/thumbfive.png)

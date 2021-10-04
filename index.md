@@ -1,8 +1,8 @@
-## Welcome to GitHub Pages
+## What is Nexus replay automated system ?
 
-You can use the [editor on GitHub](https://github.com/silvdoche/NexusR/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+Its a automated replay recording system for League of Legends ( Riot Games, Inc. ) 
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+All of the recorded games are published at : [Nexus Replays](https://www.youtube.com/channel/UCbcrpME8Gf0Swwrk4IupVow/featured)
 
 ### Markdown
 

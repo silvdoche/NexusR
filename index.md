@@ -246,4 +246,7 @@ def generate(skin_1,skin_2,lane_pos,player1,player2,region,patch,champion_f,cham
 ```
 #### Here some generated thumbnail pictures , the possibilities are almost endless , there are 150 champions , over 80 pro players and about 10 skins of each champion.
 
-![thumbnail one](https://github.com/silvdoche/NexusR/blob/gh-pages/thumbsamp/thumbfive.png)
+![thumbnail one](https://i.imgur.com/XaNQCME.png)
+![thumbnail two](https://i.imgur.com/p3CthQm.png)
+![thumbnail three](https://i.imgur.com/hbSUx8z.png)
+![thumbnail four](https://i.imgur.com/zgjMBW4.png)

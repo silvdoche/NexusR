@@ -1,35 +1,42 @@
 ## What is Nexus replay automated system ?
 
-Its a automated replay recording system for League of Legends ( Riot Games, Inc. ) 
+Its a fully automated replay recording system for League of Legends ( Riot Games, Inc. ) 
+
+First its going to render and record all the games in real time using OBS , then upload the videos with Selenium chrome webdriver to youtube.
 
 All of the recorded games are published at : [Nexus Replays](https://www.youtube.com/channel/UCbcrpME8Gf0Swwrk4IupVow/featured)
 
 ### How does it work
 
-First its going to scrape data using BS4 (Beautiful Soup 4) from [leagueofgraphs](https://www.leagueofgraphs.com/) 
+1. Scrape data using BS4 (Beautiful Soup 4) from [leagueofgraphs](https://www.leagueofgraphs.com/) 
+
+
 
 ```python
-def scrape_casual():
-    #getting predefined player names from sql database
-    player = py_sql.quary_players_casual()
+def scrape_pro():
+    #get pro player names from SQL database
+    player = py_sql.quary_players()
     da = []
     dy = []
-
     datasett = [[da for i in range(12)] for dy in range(1)]
 
     for i in range(len(player)):
-        print('Current player : '+ player[i][0] + '  , Region : ' + player[i][1])
-        records_ = engine.data_filter_casual(urllib.parse.quote(player[i][2]),player[i][1],player[i][0])
+        print('Current player : '+ player[i][2] + '  , Region : ' + player[i][1])
+        records_ = engine.data_filter(urllib.parse.quote(player[i][0]),player[i][1])
         if records_ != None:
             datasett.extend(records_)
             time.sleep(5)
         else:
-            print('error in casual player , empty')
+            print('Player Missing.')
         print('Slept for 5 sec')
+        
 ```
-Using the **data_filter_casual** function its going to store all the 100+ possible games and prepare them for the filter
+Using the **data_filter** function its going to store all the 100+ possible games and prepare them for the filter
+
+
+
 ```python
-def data_filter_casual(nickname,region,champion_main):
+def data_filter(nickname,region):
 #get players from mysql
     try:
         #select the first player , name and region and then soup
@@ -68,7 +75,7 @@ def data_filter_casual(nickname,region,champion_main):
         games_d = []
         #filter the 10 games  
         for x in range(10):
-            if ten_games[x][1] != "Soloqueue" or ten_games[x][3] != "Victory" or ten_games[x][9] == "" or ten_games[x][11] == "long" or py_sql.quary_check(ten_games[x][5]) == True or py_sql.quary_last_champ(ten_games[x][0],True) == True or time_tosec(ten_games[x][4]) >= 1980 or ten_games[x][0] != champion_main:
+            if ten_games[x][1] != "Soloqueue" or ten_games[x][3] != "Victory" or ten_games[x][9] == "" or py_sql.quary_check_second(ten_games[x][5],ten_games[x][0]) == True or py_sql.quary_last_champ_second(ten_games[x][0],py_sql.quary_tolerance_check(ten_games[x][0])[0][0]) == True or time_tosec(ten_games[x][4]) >= 1600:
                 games_d.append(x)
                 print('NOT passed , GAME ID : ' + ten_games[x][5] + ' , Champion : '+ ten_games[x][0] + '  , KDA : ' + str(ten_games[x][2]) + ' , Game Lenght : ' + ten_games[x][4])
             else :
@@ -79,8 +86,12 @@ def data_filter_casual(nickname,region,champion_main):
         return ten_games
     except:
         print('Player error , probably changed name.')
-        py_sql.quary_insert_errors_players("HTTP error",region,urllib.parse.unquote(nickname,encoding='utf-8', errors='replace'),"Could not locate","Check it out","CASUAL","EROR FROM SCRAPPER")
+        py_sql.quary_insert_errors_players("HTTP error",region,urllib.parse.unquote(nickname,encoding='utf-8', errors='replace'),"Could not locate","Check it out","PRO SCRAPPER","EROR FROM SCRAPPER")
+
 ```
+
+
+
 Now that we have the data , we have to find the best KDA (Kill/Death/Assist) games and insert them into the SQL database to be recorder.KDA is the best metric to measure a quality of the game , having a higher score means the game is more interesting to watch, nobody wants to watch a loosing game or a game that is too stale.
 ```python
     del datasett[0]
@@ -96,10 +107,9 @@ Now that we have the data , we have to find the best KDA (Kill/Death/Assist) gam
     except:
             with open('outfile', 'wb') as fp:
                 pickle.dump(datasett, fp)
-    #with open('debugf', 'wb') as fp:
-        #pickle.dump(datasett, fp)
     for z in range(2):
         try:
+            #prepares and insert the best games data , ready to be recorder.
             py_sql.quary_que(datasett[best_match[z]][0],datasett[best_match[z]][12],datasett[best_match[z]][13],
             datasett[best_match[z]][5],datasett[best_match[z]][9],datasett[best_match[z]][8][0],datasett[best_match[z]][8][1],datasett[best_match[z]][4],
             datasett[best_match[z]][7],datasett[best_match[z]][10][0],'0',datasett[z][14])
@@ -108,12 +118,5 @@ Now that we have the data , we have to find the best KDA (Kill/Death/Assist) gam
 ```
 
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+The script then creates a folder where it will store the game replay data , empty video description and title text files. OBS is being started at the same time , and being controlled with keyboard macros. I couldnt find a way to control it with API or wincom , so im using a virtual keyboard inputs.
 
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/silvdoche/NexusR/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.

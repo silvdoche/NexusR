@@ -6,10 +6,10 @@ All of the recorded games are published at : [Nexus Replays](https://www.youtube
 
 ### How does it work
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+###### First its going to scare data using BS4 (Beautiful Soup 4) from 
 
 ```markdown
-### First its going to scare data using BS4 (Beautiful Soup 4) from 
+
 
 # Header 1
 TEST 1
